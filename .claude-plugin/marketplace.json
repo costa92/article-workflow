@@ -1,0 +1,17 @@
+{
+  "name": "article-workflow-marketplace",
+  "owner": {
+    "name": "costalong"
+  },
+  "metadata": {
+    "description": "End-to-end article creation pipeline with planning, generation, review, SEO optimization, format conversion, and content remixing."
+  },
+  "plugins": [
+    {
+      "name": "article-workflow",
+      "source": "./",
+      "description": "End-to-end article creation pipeline: plan topics, generate articles, review quality, optimize SEO, convert to WeChat format, and remix viral content.",
+      "version": "1.0.0"
+    }
+  ]
+}
