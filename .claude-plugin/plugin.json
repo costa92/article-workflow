@@ -20,16 +20,5 @@
     "pipeline",
     "markdown",
     "blog"
-  ],
-  "skills": [
-    "skills/content-planner",
-    "skills/article-generator",
-    "skills/content-reviewer",
-    "skills/wechat-seo-optimizer",
-    "skills/wechat-article-converter",
-    "skills/content-remixer"
-  ],
-  "agents": [
-    "agents/content-pipeline.md"
   ]
 }
