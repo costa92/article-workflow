@@ -1,0 +1,35 @@
+{
+  "name": "article-workflow",
+  "version": "1.0.0",
+  "description": "End-to-end article creation pipeline: plan topics, generate articles, review quality, optimize SEO, convert to WeChat format, and remix viral content.",
+  "author": {
+    "name": "costalong",
+    "url": "https://github.com/costa92"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/costa92/article-workflow",
+  "homepage": "https://github.com/costa92/article-workflow",
+  "category": "content",
+  "keywords": [
+    "article",
+    "content",
+    "wechat",
+    "seo",
+    "writing",
+    "review",
+    "pipeline",
+    "markdown",
+    "blog"
+  ],
+  "skills": [
+    "skills/content-planner",
+    "skills/article-generator",
+    "skills/content-reviewer",
+    "skills/wechat-seo-optimizer",
+    "skills/wechat-article-converter",
+    "skills/content-remixer"
+  ],
+  "agents": [
+    "agents/content-pipeline.md"
+  ]
+}

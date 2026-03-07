@@ -1,0 +1,12 @@
+{
+  "gemini_api_key": "your-gemini-api-key",
+  "wechat_appid": "your-wechat-appid",
+  "wechat_secret": "your-wechat-secret",
+  "image_api_key": "your-image-api-key",
+  "image_api_base": "https://api.openai.com/v1",
+  "default_author": "your-name",
+  "cdn_domain": "your-cdn-domain.com",
+  "github_images_repo": "username/images-repo",
+  "obsidian_tech_dir": "02-技术",
+  "obsidian_publish_dir": "03-创作/已发布"
+}
