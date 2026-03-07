@@ -33,11 +33,11 @@ content-planner → article-generator → content-reviewer → wechat-seo-optimi
 ## 安装
 
 ```bash
-# 1. 添加为 marketplace
+# 1. 添加 marketplace
 /plugin marketplace add costa92/article-workflow
 
 # 2. 安装插件
-/plugin install article-workflow
+/plugin install article-workflow@article-workflow-marketplace
 ```
 
 ### 安装 Python 依赖
