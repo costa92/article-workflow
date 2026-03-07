@@ -256,3 +256,30 @@ curl -s "https://tool-website.com/blog" | \
 - [ ] 所有链接已通过 `curl -sI` 验证（HTTP 200）
 - [ ] 多步骤教程每一步都有文档支持
 - [ ] 失败项已修复或移除，通过项不输出
+
+## Post-Writing Verification（文章写完后验证）
+
+Phase A 的验证针对写作前的调研素材。文章写完后，还需验证**正文中实际出现的**链接和命令。
+
+### 正文链接验证
+用 grep 提取文章中的所有 URL，批量 curl 验证：
+```bash
+# 从文章中提取 URL 并验证
+grep -oE 'https?://[^ )>"]+' article.md | sort -u | while read url; do
+  code=$(curl -sI -o /dev/null -w "%{http_code}" --max-time 10 "$url")
+  [ "$code" = "405" ] || [ "$code" = "000" ] && code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$url")
+  [ "$code" != "200" ] && [ "$code" != "302" ] && echo "FAIL $code $url"
+done
+```
+
+### 正文命令验证
+对文章代码块中出现的非白名单 CLI 命令，验证其存在性和参数正确性：
+```bash
+# 验证命令存在
+which <command> && <command> --help | head -5
+
+# 验证具体用法（只读操作）
+<command> <subcommand> --help
+```
+
+**注意**：CDN 图片 URL（如 cdn.jsdelivr.net）属于资源链接，不需要 curl 验证。

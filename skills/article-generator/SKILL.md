@@ -34,6 +34,10 @@ description: Generate technical blog articles with authentic, non-AI style. Outp
    - 用 `npx @mermaid-js/mermaid-cli mmdc -i input.mmd -o output.png -b transparent` 渲染
    - 上传 CDN，替换文章中的 Mermaid 代码块为 `![描述](CDN_URL)`
    - **禁止在最终文章中保留 Mermaid 代码块**（微信等平台不支持渲染）
+6a. **[ ] Image type selection** — 根据文章类型选择图片来源：
+   - **工具/CLI 教程**：优先使用 shot-scraper 截取真实终端或界面截图，AI 生成图仅用于封面或无法截图的概念性内容
+   - **原理/概念文章**：使用 AI 生成的概念插图
+   - **对比/评测文章**：优先使用工具的真实界面截图
 7. **[ ] Image generation (if requested)** — 先执行 Gemini 探针测试（见下方），失败则保留占位符跳过
 8. **[ ] Update article with CDN URLs** — 截图和 AI 图分开处理，截图通常不受 Gemini 影响
 
@@ -47,10 +51,13 @@ description: Generate technical blog articles with authentic, non-AI style. Outp
    - 同一章节内无重复图片？（同一 section 不应出现两张功能相同的配图）
    - 微信平台：外部链接已转为搜索指引？（如 `搜索「关键词」`，微信不支持外链）
    - 文章中无残留 Mermaid 代码块？（流程图/架构图必须已渲染为图片）
+   - 文章中的 URL 已验证可达？（用 curl 批量检测文章正文里的所有 http/https 链接）
+   - 文章中的 CLI 命令已验证正确？（对文章里出现的非白名单命令，跑 `command --help` 或实际执行确认）
 10. **[ ] Verify content depth** — 字数要求见下表
 11. **[ ] Quality gate** — 按场景选择审查模式：
    - **发布模式**（默认）：运行 `/content-reviewer` ≥ 55/70，运行 `/wechat-seo-optimizer`
    - **草稿/测试模式**（用户说"测试""草稿""先看看"）：自行快速检查事实准确性和链接，跳过 reviewer 和 SEO
+   > ⚠️ **「快速入门」「实战教程」「深度解析」是文章深度选项，不是发布模式。** 只有用户明确说"测试""草稿""先看看"才走草稿模式。选了「快速入门」也要跑 reviewer 和 SEO。
 12. **[ ] Confirm completion** — 用简洁表格汇总，必须包含以下信息：
     - **文件绝对路径**（方便跨 session 接手）
     - **图片状态**：已上传数 / 总数，如有未生成的占位符需列出具体数量和待执行命令
@@ -167,14 +174,16 @@ Phase B: 写作（先文章后图片）
   4. Content Generation → Write tool 保存文件
   5. SCREENSHOT placeholders（引用外部内容时必须）
   6. Mermaid → image（流程图/架构图渲染为 PNG，禁止保留代码块）
+  6a. Image type selection（工具教程→截图优先，概念文章→AI 插图，评测→真实截图）
   7. Gemini 探针 → 可用则 --process-file，不可用则保留占位符
   8. 截图始终执行（不依赖 Gemini）
 
 Phase C: 写作后（按场景裁剪）
-  9. Self-check（收尾段落、红旗词、章节深度、Hook 长度、description、重复图片、外链、Mermaid 残留）
+  9. Self-check（收尾段落、红旗词、章节深度、Hook 长度、description、重复图片、外链、Mermaid 残留、正文链接验证、正文命令验证）
  10. Verify content depth（字数由用户选择决定）
  11. 发布模式：/content-reviewer ≥ 55/70 → /wechat-seo-optimizer
      草稿模式：自行快速检查，跳过 reviewer 和 SEO
+     ⚠️ 「快速入门」「实战教程」「深度解析」是深度选项，不是发布模式
  12. 简洁表格汇总（绝对路径 + 图片状态含未解决占位符 + 评分）
 ```
 
@@ -293,5 +302,5 @@ For advanced config, see [INSTALL.md](./INSTALL.md)
 
 ---
 
-**Version:** 3.2 (2026-03-07)
-**Changes:** Added Mermaid→image rendering (Phase B Step 6), expanded self-check to 8 items, unified quality gate to 55/70, word count user-driven
+**Version:** 3.3 (2026-03-07)
+**Changes:** Added draft-mode anti-confusion warning, post-writing URL/CLI verification in self-check, image type selection guidance for tool tutorials
