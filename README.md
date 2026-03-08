@@ -54,11 +54,80 @@ pip install -r skills/wechat-article-converter/requirements.txt
 
 ## 配置
 
-插件通过 `config/config.json` 或环境变量管理配置。首次使用请复制模板：
+插件支持三种配置方式，按优先级从高到低：
 
+### 配置文件获取
+
+**方式 1：使用插件本地配置文件**（推荐）
+
+`config/config.json` 位于插件安装目录下，具体路径取决于安装方式：
+
+- **通过 Marketplace 安装**：`~/.claude/plugins/article-workflow/config/config.json`
+- **从 GitHub 直接安装**：`~/.claude/plugins/article-workflow/config/config.json`
+- **从源码安装**：项目根目录下的 `config/config.json`
+
+1. 复制配置模板到本地（需要在插件目录下执行）：
 ```bash
+# 如果在插件目录下
 cp config/config.example.json config/config.json
+
+# 或者直接指定完整路径
+cp ~/.claude/plugins/article-workflow/config/config.example.json ~/.claude/plugins/article-workflow/config/config.json
 ```
+
+2. 编辑 `config/config.json`，填入你的配置信息：
+```json
+{
+  "gemini_api_key": "your-actual-gemini-api-key",
+  "wechat_appid": "your-actual-wechat-appid",
+  "wechat_secret": "your-actual-wechat-secret",
+  "default_author": "Your Name"
+}
+```
+
+> 📍 **提示**：如果找不到插件目录，可以运行以下命令快速打开：
+> ```bash
+> # 打开插件目录
+> open ~/.claude/plugins/article-workflow
+> # 或者在 macOS/Linux 下
+> cd ~/.claude/plugins/article-workflow
+> ls -la config/
+> ```
+
+**方式 2：使用 Claude 环境配置文件**
+
+在 `~/.claude/env.json` 中添加配置（适合多个插件共用配置）：
+
+```json
+{
+  "gemini_api_key": "your-actual-gemini-api-key",
+  "wechat_appid": "your-actual-wechat-appid",
+  "wechat_secret": "your-actual-wechat-secret",
+  "default_author": "Your Name"
+}
+```
+
+**方式 3：使用环境变量**
+
+在终端中设置环境变量（临时生效）：
+```bash
+export GEMINI_API_KEY="your-actual-gemini-api-key"
+export WECHAT_APPID="your-actual-wechat-appid"
+export WECHAT_SECRET="your-actual-wechat-secret"
+export ARTICLE_AUTHOR="Your Name"
+```
+
+或添加到 `~/.zshrc` 或 `~/.bashrc`（永久生效）：
+```bash
+echo 'export GEMINI_API_KEY="your-actual-gemini-api-key"' >> ~/.zshrc
+echo 'export WECHAT_APPID="your-actual-wechat-appid"' >> ~/.zshrc
+echo 'export WECHAT_SECRET="your-actual-wechat-secret"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+**配置优先级**：环境变量 > `config/config.json` > `~/.claude/env.json`（向后兼容）
+
+### 必填配置（图片生成）
 
 ### 必填配置（图片生成）
 
@@ -78,7 +147,7 @@ cp config/config.example.json config/config.json
 | `cdn_domain` | `CDN_DOMAIN` | 图片 CDN 域名 |
 | `github_images_repo` | `GITHUB_IMAGES_REPO` | PicGo GitHub 图床仓库（如 `username/images`） |
 
-配置优先级：环境变量 > `config/config.json` > `~/.claude/env.json`（向后兼容）
+> 💡 **提示**：配置文件中的占位符（如 `your-gemini-api-key`）不会生效，请替换为实际值。
 
 ### API 密钥获取说明
 
