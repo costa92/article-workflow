@@ -16,6 +16,16 @@ from pathlib import Path
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "shared"))
 
+# 导入配置加载器函数（用于测试）
+from config_loader import (
+    get_config,
+    get_config_bool,
+    get_config_int,
+    get_config_list,
+    require_config,
+    generate_config_template,
+)
+
 
 class TestConfigLoading(unittest.TestCase):
     """测试配置加载"""
@@ -117,7 +127,7 @@ class TestRetryManager(unittest.TestCase):
             0
         )
         self.assertTrue(can_retry)
-        self.assertIn("可重试", reason)
+        self.assertEqual(reason, "可以重试")
         
         # 测试网络超时
         can_retry, reason = self.retry_manager.can_retry(
@@ -136,7 +146,7 @@ class TestRetryManager(unittest.TestCase):
             0
         )
         self.assertFalse(can_retry)
-        self.assertIn("致命错误", reason)
+        self.assertEqual(reason, "此错误类型不可重试")
     
     def test_max_retries(self):
         """测试最大重试次数"""
@@ -154,15 +164,16 @@ class TestRetryManager(unittest.TestCase):
         """测试退避时间计算"""
         from retry_manager import RetryableErrorType
         
-        # 测试首次重试
+        # 测试首次重试 (retry_count=1)
         backoff = self.retry_manager.get_backoff_seconds(
             RetryableErrorType.NETWORK_TIMEOUT.value,
             1
         )
-        self.assertGreaterEqual(backoff, 5)
-        self.assertLessEqual(backoff, 15)
+        # backoff_base=2.0, retry_count=1, 所以 2.0^1 = 2，加上随机抖动0.8-1.2
+        self.assertGreaterEqual(backoff, 1.6)  # 2 * 0.8
+        self.assertLessEqual(backoff, 2.4)    # 2 * 1.2
         
-        # 测试第二次重试（应该有退避）
+        # 测试第二次重试 (retry_count=2)
         backoff2 = self.retry_manager.get_backoff_seconds(
             RetryableErrorType.NETWORK_TIMEOUT.value,
             2
@@ -215,6 +226,108 @@ class TestUserConfirm(unittest.TestCase):
         user_response = "n"
         confirmed = user_response.lower() in ['y', 'yes', '是', '确认']
         self.assertFalse(confirmed)
+
+
+class TestConfigLoader(unittest.TestCase):
+    """测试配置加载器"""
+    
+    def setUp(self):
+        """测试前准备"""
+        import sys
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        
+        self.temp_dir = tempfile.mkdtemp()
+        
+        # 设置环境变量进行测试
+        os.environ["TEST_API_KEY"] = "test-env-api-key"
+        os.environ["TEST_DEBUG_MODE"] = "true"
+        os.environ["TEST_MAX_RETRY"] = "5"
+    
+    def tearDown(self):
+        """测试后清理"""
+        import shutil
+        # 清理环境变量
+        for key in ["TEST_API_KEY", "TEST_DEBUG_MODE", "TEST_MAX_RETRY"]:
+            os.environ.pop(key, None)
+        
+        if os.path.exists(self.temp_dir):
+            shutil.rmtree(self.temp_dir)
+    
+    def test_basic_config_loading(self):
+        """测试基本配置加载"""
+        # 测试环境变量
+        val = get_config("test_api_key")
+        self.assertEqual(val, "test-env-api-key")
+        
+        # 测试布尔值转换
+        val = get_config_bool("test_debug_mode")
+        self.assertTrue(val)
+        
+        # 测试整数值转换
+        val = get_config_int("test_max_retry")
+        self.assertEqual(val, 5)
+    
+    def test_config_priority(self):
+        """测试配置优先级"""
+        # 先清理环境变量
+        for key in ["TEST_API_KEY", "TEST_VALUE", "TEST_API_KEY_2"]:
+            os.environ.pop(key, None)
+        
+        # 设置环境变量
+        os.environ["TEST_VALUE"] = "from-env"
+        os.environ["TEST_API_KEY_2"] = "from-env-key"
+        
+        # 环境变量应该优先于任何配置文件
+        val = get_config("test_value")
+        self.assertEqual(val, "from-env")
+        
+        # 测试没有环境变量时返回默认值
+        val = get_config("non_existent_key", "default-value")
+        self.assertEqual(val, "default-value")
+        
+        # 测试环境变量存在时使用环境变量
+        val = get_config("test_api_key_2", "default-key")
+        self.assertEqual(val, "from-env-key")
+    
+    def test_config_validation(self):
+        """测试配置验证"""
+        # 测试默认值
+        val = get_config("non_existent_key", "default-value")
+        self.assertEqual(val, "default-value")
+        
+        # 测试必填配置（应该会失败）
+        with self.assertRaises(ValueError):
+            require_config("required_key_that_does_not_exist")
+    
+    def test_type_conversion(self):
+        """测试类型转换"""
+        # 设置测试环境变量
+        os.environ["TEST_BOOL"] = "true"
+        os.environ["TEST_INT"] = "123"
+        os.environ["TEST_LIST"] = "a,b,c,d"
+        
+        # 测试布尔值转换
+        val = get_config_bool("test_bool")
+        self.assertTrue(val)
+        
+        # 测试整数转换
+        val = get_config_int("test_int")
+        self.assertEqual(val, 123)
+        
+        # 测试列表转换
+        val = get_config_list("test_list")
+        self.assertEqual(val, ["a", "b", "c", "d"])
+    
+    def test_config_template_generation(self):
+        """测试配置模板生成"""
+        # 生成模板
+        template = generate_config_template()
+        
+        # 验证模板包含必要的部分
+        self.assertIn("api", template)
+        self.assertIn("content", template)
+        self.assertIn("paths", template)
+        self.assertIn("pipeline", template)
 
 
 class TestFileOperations(unittest.TestCase):
@@ -290,14 +403,16 @@ tags: [yaml, 测试, 文档]
 def run_tests():
     """运行所有测试"""
     # 创建测试套件
+    loader = unittest.TestLoader()
     suite = unittest.TestSuite()
     
     # 添加测试类
-    suite.addTest(unittest.makeSuite(TestConfigLoading))
-    suite.addTest(unittest.makeSuite(TestPipelineMetadata))
-    suite.addTest(unittest.makeSuite(TestRetryManager))
-    suite.addTest(unittest.makeSuite(TestUserConfirm))
-    suite.addTest(unittest.makeSuite(TestFileOperations))
+    suite.addTest(loader.loadTestsFromTestCase(TestConfigLoading))
+    suite.addTest(loader.loadTestsFromTestCase(TestPipelineMetadata))
+    suite.addTest(loader.loadTestsFromTestCase(TestRetryManager))
+    suite.addTest(loader.loadTestsFromTestCase(TestUserConfirm))
+    suite.addTest(loader.loadTestsFromTestCase(TestConfigLoader))
+    suite.addTest(loader.loadTestsFromTestCase(TestFileOperations))
     
     # 运行测试
     runner = unittest.TextTestRunner(verbosity=2)

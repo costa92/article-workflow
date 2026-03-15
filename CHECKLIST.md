@@ -18,6 +18,8 @@
 - [x] `shared/pipeline_manager.py` - 流水线状态管理（296行）
 - [x] `shared/retry_manager.py` - 智能重试逻辑（334行）
 - [x] `shared/user_confirm.py` - 用户确认管理（462行）
+- [x] `shared/config_loader.py` - 配置加载器（345行）
+- [x] `shared/__init__.py` - 模块导出
 - [x] `config/pipeline_metadata.template.yaml` - 元数据模板（181行）
 - [x] `config/config.example.json` - 增强示例配置
 
@@ -78,6 +80,8 @@
 - `shared/pipeline_manager.py` - 296行
 - `shared/retry_manager.py` - 334行
 - `shared/user_confirm.py` - 462行
+- `shared/config_loader.py` - 345行
+- `shared/__init__.py` - 50+行
 - `config/pipeline_metadata.template.yaml` - 181行
 - `scripts/pipeline_cli.py` - 403行
 - `scripts/config_wizard.py` - 403行
@@ -94,7 +98,7 @@
 - `config/config.example.json` - 增强配置，添加注释
 
 ### 总新增代码行数
-- 约 3000+ 行高质量代码
+- 约 3500+ 行高质量代码
 
 ## 🚀 使用指南
 
