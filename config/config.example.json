@@ -1,12 +1,82 @@
 {
-  "gemini_api_key": "your-gemini-api-key",
-  "wechat_appid": "your-wechat-appid",
-  "wechat_secret": "your-wechat-secret",
-  "image_api_key": "your-image-api-key",
+  // ==================== 必填配置 ====================
+  // Gemini API 密钥 - 用于 AI 图片生成（必填）
+  // 获取地址：https://makersuite.google.com/app/apikey
+  "gemini_api_key": "your-actual-gemini-api-key",
+  
+  // ==================== 微信公众号配置 ====================
+  // 微信公众号 AppID 和 Secret（可选，用于草稿箱上传）
+  // 获取方式：登录微信公众平台 → 设置与开发 → 基本配置
+  "wechat_appid": "your-actual-wechat-appid",
+  "wechat_secret": "your-actual-wechat-secret",
+  
+  // ==================== 图片生成配置 ====================
+  // OpenAI 兼容 API 配置（可选，用于 Go 后端图片生成）
+  // 支持 DeepSeek、Moonshot、智谱 AI 等第三方服务
+  "image_api_key": "your-actual-image-api-key",
   "image_api_base": "https://api.openai.com/v1",
-  "default_author": "your-name",
-  "cdn_domain": "your-cdn-domain.com",
+  
+  // ==================== 作者信息 ====================
+  // 默认作者名称，会添加到文章 frontmatter 中
+  "default_author": "Your Name",
+  
+  // ==================== 图片 CDN 配置 ====================
+  // CDN 域名（可选，用于图片链接）
+  "cdn_domain": "cdn.example.com",
+  
+  // GitHub 图床仓库（可选，格式：username/repo-name）
+  // 需要配合 PicGo 使用
   "github_images_repo": "username/images-repo",
+  
+  // ==================== Obsidian 配置 ====================
+  // Obsidian 技术文章目录（可选）
   "obsidian_tech_dir": "02-技术",
-  "obsidian_publish_dir": "03-创作/已发布"
+  
+  // Obsidian 已发布文章目录（可选）
+  "obsidian_publish_dir": "03-创作/已发布",
+  
+  // ==================== 高级配置 ====================
+  // 文章生成参数（可选）
+  "article_generation": {
+    // 默认文章长度（字数）
+    "default_word_count": 1500,
+    // 是否自动生成图片
+    "auto_generate_images": true,
+    // 图片生成风格
+    "image_style": "digital art",
+    // 是否包含代码示例
+    "include_code_examples": true
+  },
+  
+  // 审查参数（可选）
+  "review_settings": {
+    // 审查模式：quick（快速）| full（完整）
+    "mode": "quick",
+    // 通过分数阈值
+    "passing_score": 55,
+    // 是否自动修改低分项
+    "auto_fix_issues": false
+  },
+  
+  // 微信格式转换参数（可选）
+  "wechat_conversion": {
+    // 默认主题：coffee | tech | warm | simple | dark
+    "default_theme": "coffee",
+    // 是否自动上传到草稿箱
+    "auto_upload_draft": false,
+    // 是否生成预览 HTML
+    "generate_preview": true
+  },
+  
+  // 流水线参数（可选）
+  "pipeline_settings": {
+    // 最大重试次数（内容审查）
+    "max_review_retries": 3,
+    // 最大重试次数（其他错误）
+    "max_error_retries": 2,
+    // 是否启用用户确认节点
+    "enable_user_confirmations": true,
+    // 是否保存流水线元数据
+    "save_pipeline_metadata": true
+  }
 }

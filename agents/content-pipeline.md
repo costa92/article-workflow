@@ -9,8 +9,8 @@ tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, WebSearch
 ## 流水线阶段
 
 ```
-content-planner → article-generator → content-reviewer → wechat-seo-optimizer → wechat-article-converter → content-repurposer → content-analytics
-     选题              写作               审核               SEO 优化              格式转换/上传            多平台分发             数据复盘
+content-planner → article-generator → content-reviewer → wechat-seo-optimizer → wechat-article-converter → [发布] → content-repurposer → [等待3-7天] → content-analytics
+     选题              写作               审核               SEO 优化              格式转换/上传            正式发布     多平台分发            数据复盘
 ```
 
 ## 各阶段职责与调用规则
@@ -44,12 +44,19 @@ content-planner → article-generator → content-reviewer → wechat-seo-optimi
 - **输出**: 微信 HTML + 草稿箱上传
 - **关键约束**: 需要 WECHAT_APPID/SECRET 环境变量
 
-### 阶段 6: 多平台分发（可选外部 skill）
+### 阶段 6: 正式发布（按需）
+- **操作**: 从微信草稿箱发布到公众号
+- **输入**: 草稿箱中的文章 media_id
+- **输出**: 已发布文章的 msg_data_id
+- **关键约束**: 需要用户在微信后台手动操作或提供 API
+
+### 阶段 7: 多平台分发（可选外部 skill）
 - **Skill**: `content-repurposer`（需单独安装）
 - **输入**: 源文章 Markdown
 - **输出**: 小红书 / Twitter / 知乎 / Newsletter 等平台适配版本
+- **触发条件**: 在微信公众号发布后执行
 
-### 阶段 7: 数据复盘（可选外部 skill）
+### 阶段 8: 数据复盘（可选外部 skill）
 - **Skill**: `content-analytics`（需单独安装）
 - **输入**: 微信后台导出的 CSV/Excel
 - **输出**: 数据分析报告 + 选题调整建议
@@ -58,26 +65,75 @@ content-planner → article-generator → content-reviewer → wechat-seo-optimi
 ## 编排策略
 
 ### 完整流程（用户说"从头写一篇文章"）
-执行阶段 1 → 2 → 3 → 4 → 5
+执行阶段 1 → 2 → 3 → 4 → 5 → 6 → 7（可选）→ 8（可选）
 
 ### 快速发布（用户说"写完直接上传"）
-执行阶段 2 → 3（快速检查）→ 4 → 5
+执行阶段 2 → 3（快速检查）→ 4 → 5 → 6 → 7（可选）
 
 ### 仅写作（用户说"帮我写篇文章"）
 执行阶段 2 → 3 → 4
 
 ### 批量生产（用户说"把这些选题都写了"）
-对每个选题执行阶段 2 → 3 → 4，最后批量执行阶段 5
+对每个选题执行阶段 2 → 3 → 4，最后批量执行阶段 5 → 6 → 7（可选）
+
+## 重试机制
+
+| 场景 | 最大重试次数 | 触发条件 | 回退阶段 |
+|------|-------------|---------|----------|
+| 审核未通过 | 3 次 | 综合评分 < 55/70 | 回到阶段 2，用户修改后重新审核 |
+| SEO 标题不满意 | 1 次 | 用户不确认标题 | 在阶段 4 内重新生成方案 |
+| 上传失败 | 2 次 | API 错误（非 IP 白名单） | 重试阶段 5 |
+| IP 白名单错误 | 0 次 | `invalid ip` 错误 | 停止，提示用户配置白名单 |
+| 草稿箱失败 | 2 次 | 网络超时等临时错误 | 重试阶段 5 |
+
+## 用户确认节点
+
+| 节点 | 是否必须 | 说明 |
+|------|---------|------|
+| **阶段 1: 选题确认** | 可选 | 用户可选择或跳过选题规划 |
+| **阶段 3: 审核结果确认** | 必须 | 如果 < 55 分，需确认是否修改重审 |
+| **阶段 4: SEO 标题确认** | 必须 | 用户选择最终标题方案并确认摘要 |
+| **阶段 5: 草稿预览确认** | 可选 | 用户可预览微信格式后再决定是否上传 |
+| **阶段 6: 发布确认** | 必须 | 最终发布前需用户确认 |
 
 ## 阶段间数据传递
 
 - 文件路径是阶段间的核心传递物，每个 skill 的输出文件路径必须传给下一个 skill
 - frontmatter 是元数据载体，title/description/tags/status 在流水线中逐步完善
-- 状态流转: `status: draft` → 审核通过后 → SEO 优化后 → 上传后可改为 `status: published`
+- 状态流转：
+  ```
+  status: draft → 阶段 3 审核通过 → 阶段 4 SEO 优化完成 → 阶段 5 上传草稿箱 → 阶段 6 正式发布 → status: published → 阶段 7/8 多平台分发和数据分析
+  ```
+- 使用 `pipeline_metadata.json` 跟踪流水线执行状态
 
 ## 异常处理
 
-- **审核未通过（< 55 分）**: 回到阶段 2 修改，然后重新审核
-- **SEO 标题用户不满意**: 在阶段 4 内迭代，不回退
-- **上传失败（API 错误）**: 检查环境变量和 IP 白名单，不跳过
-- **图片生成失败**: 手动用 `picgo upload` 补救，继续流水线
+### 常见错误及处理
+
+| 错误类型 | 症状 | 解决方案 |
+|---------|------|---------|
+| **审核循环** | 评分反复 < 55 分 | 3 次重试后停止，建议用户重新构思选题 |
+| **IP 白名单** | `invalid ip` 错误 | 立即停止，指引用户配置：mp.weixin.qq.com → 设置与开发 → 基本配置 → IP 白名单 |
+| **API 认证失败** | `invalid appid/secret` | 检查 WECHAT_APPID/SECRET 环境变量配置 |
+| **图片生成失败** | Gemini API 错误 | 检查 GEMINI_API_KEY 是否有效，可跳过自动配图，用户手动添加 |
+| **网络超时** | 连接超时 | 最多重试 2 次，然后提示用户手动操作 |
+| **草稿箱满** | `material limit exceeded` | 提示用户清理草稿箱后重试 |
+
+### 错误恢复策略
+
+```
+致命错误（立即终止）:
+- IP 白名单错误
+- 认证失败
+- 文件不存在
+
+可恢复错误（重试）:
+- 网络超时
+- API 临时错误
+- 图片生成失败
+
+用户决策点（等待确认）:
+- 审核未通过（给出修改建议）
+- SEO 标题不满意（提供多个方案）
+- 预览效果不理想（允许返回修改）
+```
