@@ -29,6 +29,7 @@ from .config_loader import (
     get_all_config,
     generate_config_template,
 )
+from .config_manager import ConfigManager, ConfigLoader
 
 __all__ = [
     "PipelineManager",
@@ -37,6 +38,8 @@ __all__ = [
     "NonRetryableErrorType",
     "UserConfirm",
     "ConfirmationType",
+    "ConfigManager",
+    "ConfigLoader",
     "get_config",
     "get_config_bool",
     "get_config_int",

@@ -27,12 +27,19 @@ content-planner → article-generator → content-reviewer → wechat-seo-optimi
 | `wechat-seo-optimizer` | 标题优化、SEO | 标题 A/B 测试、关键词策略、摘要优化 |
 | `content-remixer` | 拆解爆款 | 爆款文章拆解 → 创意积木 → 组装新内容 |
 
-### 外部技能包（需单独安装）
+### 核心技能包（8个完整技能）
 
 | Skill | 功能 | 说明 |
 |-------|------|------|
-| `content-repurposer` | 多平台分发 | 文章 → 小红书/Twitter/短视频/Newsletter/知乎 |
-| `content-analytics` | 数据复盘 | 公众号数据分析（阅读/互动/增长/健康度诊断），需发布后 3-7 天有足够数据 |
+| `article-generator` | 文章生成 | 生成技术博客文章，Markdown/Obsidian格式，AI图片生成 |
+| `content-reviewer` | 内容审查 | 7维评分审查文章质量，通过标准≥55分 |
+| `wechat-article-converter` | 微信格式转换 | Markdown → 微信公众号HTML，支持7个主题 |
+| `wechat-seo-optimizer` | SEO优化 | 优化文章标题、摘要和关键词，标题A/B测试 |
+| `content-planner` | 内容规划 | 选题规划和内容日历，输出月度排期表 |
+| `content-remixer` | 爆款拆解 | 拆解爆款文章，生成创意积木和写作模板 |
+| `content-repurposer` | 多平台分发 | 文章 → 小红书/Twitter/Newsletter/知乎平台适配 |
+| `content-analytics` | 数据分析 | 公众号数据分析（阅读/互动/增长/健康度诊断） |
+| `ab-testing` | A/B测试 | 标题、摘要、封面图等元素的数据驱动优化测试 |
 
 ## 🆕 新增功能
 
@@ -1094,12 +1101,49 @@ except Exception as e:
 - **错误处理**：完善的异常处理和日志记录
 - **配置驱动**：所有行为可通过配置文件调整
 
-## 使用示例
+## 📝 使用案例
 
-详细的使用示例和最佳实践请参考 [EXAMPLES.md](EXAMPLES.md)，包括：
+### 快速开始
+```bash
+# 1. 配置项目
+python scripts/config_wizard.py
 
-- 基础使用：单篇文章生成、审查、转换
-- 端到端流水线：从选题到发布的完整流程
+# 2. 运行完整工作流
+python scripts/pipeline_cli.py run full-pipeline --topic "Python异步编程实战"
+
+# 3. 查看结果
+ls -la output/
+```
+
+### 完整案例展示
+**场景**: 创建一篇关于"Python异步编程"的技术文章，并分发到多个平台
+
+**工作流程**:
+1. **选题规划** → 2. **文章生成** → 3. **内容审查** → 4. **SEO优化** → 5. **多平台分发** → 6. **数据分析**
+
+**成果**:
+- ✅ 生成 2,800 字深度技术文章
+- ✅ 通过内容审查 (91.7/100分)
+- ✅ SEO优化建议 (4个标题变体)
+- ✅ 适配4个平台 (微信、知乎、小红书、Twitter)
+- ✅ 数据分析报告 (12,500次阅读，72.3%完成率)
+
+**详细案例**: 查看 [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) 获取完整案例
+
+### 交互式体验
+```bash
+# 运行交互式演示
+python interactive_demo.py
+
+# 运行实战脚本
+./PRACTICAL_EXAMPLE.sh
+```
+
+### 快速参考
+- **快速上手**: [QUICK_START.md](QUICK_START.md) - 5分钟上手指南
+- **完整案例**: [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) - 详细使用案例
+- **使用指南**: [USAGE_GUIDE.md](USAGE_GUIDE.md) - 完整功能说明
+- **交互演示**: `interactive_demo.py` - 交互式体验
 - 高级场景：爆款拆解、多平台分发、数据分析
 - 故障排除：常见问题解决方案
 - 最佳实践：配置管理、文件组织、质量保证

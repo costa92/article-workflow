@@ -39,7 +39,11 @@
 | **文章生成** | `写文章`<br>`写一篇`<br>`article` | 生成技术博客文章，包含代码示例和AI配图 | `写一篇关于 Python 异步编程的教程` |
 | **内容审查** | `审查文章`<br>`内容审查`<br>`review article` | 7维评分（可读性、逻辑流等），≥55分可发布 | `审查文章 output/tutorial.md` |
 | **微信格式转换** | `转微信格式`<br>`微信排版`<br>`上传草稿箱` | Markdown转微信公众号HTML，支持16个主题 | `把文章转成微信格式，用 tech 主题` |
-| **完整流水线** | `帮我完成一篇...` | 端到端处理：写作→审查→优化→转换→发布 | `帮我完成一篇关于 RAG 的文章，从写作到发布微信公众号` |
+| **SEO优化** | `标题优化`<br>`SEO`<br>`取标题` | 优化文章标题、摘要和关键词，标题A/B测试 | `为这篇文章优化标题和摘要` |
+| **多平台分发** | `分发到平台`<br>`多平台分发` | 文章适配到小红书、知乎、Twitter、Newsletter | `将文章分发到小红书、知乎和 Twitter` |
+| **数据分析** | `分析数据`<br>`数据复盘` | 公众号数据分析，阅读/互动/增长分析 | `分析最近发布的5篇文章的数据表现` |
+| **A/B测试** | `A/B测试`<br>`测试标题`<br>`测试封面` | 标题、摘要、封面图的数据驱动优化测试 | `创建标题A/B测试，基线："原始标题"，变体："变体1" "变体2"` |
+| **完整流水线** | `帮我完成一篇...` | 端到端处理：写作→审查→优化→转换→发布→分发→分析 | `帮我完成一篇关于 RAG 的文章，从写作到发布微信公众号` |
 
 ## 🔧 常用配置
 
@@ -66,6 +70,34 @@ config/config.json                    # 本地配置文件（推荐）
   "article_generation": {                   // 文章生成设置
     "default_word_count": 1500,            // 默认字数
     "auto_generate_images": true           // 自动生成图片
+  }
+}
+```
+
+### 🎯 高级配置示例
+```json
+{
+  "review_settings": {                     // 内容审查设置
+    "mode": "quick",                       // 审查模式：quick/full
+    "passing_score": 55,                   // 通过分数阈值
+    "auto_fix_issues": false,              // 是否自动修复可修复问题
+    "strict_mode": false                   // 严格模式：对AI痕迹更敏感
+  },
+  
+  "pipeline_settings": {                   // 流水线配置
+    "max_review_retries": 3,               // 内容审查最大重试次数
+    "max_error_retries": 2,                // 其他错误最大重试次数
+    "enable_user_confirmations": true,     // 是否启用用户确认节点
+    "save_pipeline_metadata": true,        // 是否保存流水线元数据
+    "auto_cleanup_days": 30,               // 自动清理多少天前的数据
+    "parallel_execution": false            // 是否启用并行执行
+  },
+  
+  "wechat_conversion": {                   // 微信转换配置
+    "default_theme": "coffee",             // 默认主题
+    "auto_upload_draft": false,            // 是否自动上传到草稿箱
+    "generate_preview": true,              // 是否生成预览HTML
+    "compress_images": true                // 是否压缩图片
   }
 }
 ```
@@ -128,6 +160,29 @@ python scripts/config_wizard.py --export config.json
 ```bash
 # 使用 content-planner skill
 帮我规划下个月的公众号选题，方向是 AI 开发工具
+```
+
+### 场景4：多平台内容分发
+```bash
+# 1. 首先完成主要文章的创作
+帮我完成一篇关于 Docker 微服务架构的文章
+
+# 2. 安装并配置 content-repurposer skill
+# （安装指南见 README.md "外部技能包" 部分）
+
+# 3. 分发到多个平台
+将 output/docker-microservices.md 分发到小红书、知乎和 Twitter
+```
+
+### 场景5：数据分析与优化
+```bash
+# 1. 发布文章后等待3-7天收集数据
+
+# 2. 安装并配置 content-analytics skill
+# （安装指南见 README.md "外部技能包" 部分）
+
+# 3. 分析数据表现
+分析最近发布的5篇文章的数据表现，生成优化建议报告
 ```
 
 ## 🔍 故障排除速查
@@ -219,6 +274,75 @@ python scripts/pipeline_cli.py run
 
 # 使用 cron 定时发布
 0 10 * * * cd /path/to/article-workflow && ./auto_publish.sh "今日主题"
+```
+
+## 📊 性能调优与监控
+
+### 1. 性能优化配置
+```json
+{
+  "pipeline_settings": {
+    "auto_cleanup_days": 7,               // 减少数据保留天数，节省空间
+    "parallel_execution": true,           // 启用并行执行，提高效率
+    "max_workers": 2                      // 限制并发任务数，避免资源耗尽
+  }
+}
+```
+
+### 2. 内存和资源管理
+```bash
+# 限制并发任务数
+export ARTICLE_WORKFLOW_MAX_WORKERS=2
+
+# 减少日志级别，节省资源
+export ARTICLE_WORKFLOW_LOG_LEVEL=WARNING
+
+# 启用性能监控
+export ARTICLE_WORKFLOW_PERF_MONITOR=1
+```
+
+### 3. 实时监控命令
+```bash
+# 实时查看流水线状态
+python scripts/pipeline_cli.py list --watch
+
+# 查看性能统计
+python scripts/pipeline_cli.py stats --format json
+
+# 监控资源使用情况
+python scripts/pipeline_cli.py monitor --interval 10
+
+# 查看错误日志
+find config/pipeline_metadata -name "*.yaml" -exec grep -l "error\|failed" {} \;
+```
+
+### 4. 数据清理策略
+```bash
+# 保留最新的10个流水线
+python scripts/pipeline_cli.py cleanup --keep 10
+
+# 清理所有已完成流水线
+python scripts/pipeline_cli.py cleanup --status completed
+
+# 清理30天前的数据
+python scripts/pipeline_cli.py cleanup --days 30
+
+# 查看占用空间
+du -sh config/pipeline_metadata/
+```
+
+### 5. 调试和性能分析
+```bash
+# 启用详细调试模式
+export ARTICLE_WORKFLOW_DEBUG=1
+export ARTICLE_WORKFLOW_LOG_LEVEL=DEBUG
+
+# 性能分析（需要安装相应工具）
+python -m cProfile -o profile.stats scripts/pipeline_cli.py run
+python -m pstats profile.stats
+
+# 内存分析
+python -m memory_profiler scripts/pipeline_cli.py run
 ```
 
 ## 📞 获取帮助

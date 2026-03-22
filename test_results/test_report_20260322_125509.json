@@ -1,0 +1,142 @@
+{
+  "test_summary": {
+    "timestamp": "2026-03-22T12:55:09.187398",
+    "total_tests": 6,
+    "total_passed": 2,
+    "passed_rate": "33.3%",
+    "execution_summary": {
+      "total_time": 0.17,
+      "average_time_per_test": 0.03,
+      "success_rate": 33.33333333333333
+    },
+    "scenario_results": {
+      "技术教程": {
+        "test_name": "技术教程",
+        "status": "passed",
+        "execution_time": 0.03,
+        "output": "🔧 测试技术教程场景配置...\n  ✅ 场景配置验证通过: technical_tutorial\n📝 测试技术教程文章结构...\n  ✅ 文章结构验证通过: 3个代码示例\n🔍 测试技术教程内容质量...\n  ✅ 内容质量评估: 90.8/100 (PASS)\n🔎 测试技术教程SEO优化...\n  ✅ SEO优化完成: 91/100\n🌐 测试技术教程平台适配...\n  ✅ 平台适配完成: 3个技术平台\n🏗️  测试技术教程场景完整性...\n🔧 测试技术教程场景配置...\n  ✅ 场景配置验证通过: technical_tutorial\n📝 测试技术教程文章结构...\n  ✅ 文章结构验证通过: 3个代码示例\n🔍 测试技术教程内容质量...\n  ✅ 内容质量评估: 90.8/100 (PASS)\n🔎 测试技术教程SEO优化...\n  ✅ SEO优化完成: 91/100\n🌐 测试技术教程平台适配...\n  ✅ 平台适配完成: 3个技术平台\n\n  📊 场景完整性: 5/5 通过 (100.0%)\n\n============================================================\n🏗️  运行完整技术教程场景测试...\n🚀 开始技术教程场景测试\n============================================================\n🏗️  测试技术教程场景完整性...\n🔧 测试技术教程场景配置...\n  ✅ 场景配置验证通过: technical_tutorial\n📝 测试技术教程文章结构...\n  ✅ 文章结构验证通过: 3个代码示例\n🔍 测试技术教程内容质量...\n  ✅ 内容质量评估: 90.8/100 (PASS)\n🔎 测试技术教程SEO优化...\n  ✅ SEO优化完成: 91/100\n🌐 测试技术教程平台适配...\n  ✅ 平台适配完成: 3个技术平台\n\n  📊 场景完整性: 5/5 通过 (100.0%)\n\n============================================================\n📋 技术教程场景测试完成!\n  测试通过率: 100.0%\n  完整性分数: 100.0/100\n  ✅ 所有测试通过!\n",
+        "error": "test_01_scenario_configuration (__main__.TestTechnicalTutorialScenario.test_01_scenario_configuration)\n测试场景配置 ... ok\ntest_02_article_structure (__main__.TestTechnicalTutorialScenario.test_02_article_structure)\n测试文章结构 ... ok\ntest_03_content_quality_assessment (__main__.TestTechnicalTutorialScenario.test_03_content_quality_assessment)\n测试内容质量评估 ... ok\ntest_04_seo_optimization_for_technical_content (__main__.TestTechnicalTutorialScenario.test_04_seo_optimization_for_technical_content)\n测试技术内容SEO优化 ... ok\ntest_05_platform_adaptation_for_technical_audience (__main__.TestTechnicalTutorialScenario.test_05_platform_adaptation_for_technical_audience)\n测试技术受众平台适配 ... ok\ntest_06_scenario_completeness (__main__.TestTechnicalTutorialScenario.test_06_scenario_completeness)\n测试场景完整性 ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.002s\n\nOK\n",
+        "return_code": 0,
+        "success": true
+      },
+      "行业分析": {
+        "test_name": "行业分析",
+        "status": "passed",
+        "execution_time": 0.03,
+        "output": "🔧 测试行业分析场景配置...\n  ✅ 场景配置验证通过: industry_analysis\n📊 测试行业分析报告结构...\n  ✅ 报告结构验证通过: 40个数据点，3个图表，12条建议\n🎯 测试行业分析专业质量...\n  ✅ 专业质量评估: 91.2/100 (优秀)\n📈 测试行业分析SEO优化...\n  ✅ 商业SEO优化完成: 94/100\n💼 测试行业分析平台适配...\n  ✅ 商业平台适配完成: 3个专业平台\n🏢 测试行业分析场景完整性和商业影响力...\n🔧 测试行业分析场景配置...\n  ✅ 场景配置验证通过: industry_analysis\n📊 测试行业分析报告结构...\n  ✅ 报告结构验证通过: 40个数据点，3个图表，12条建议\n🎯 测试行业分析专业质量...\n  ✅ 专业质量评估: 91.2/100 (优秀)\n📈 测试行业分析SEO优化...\n  ✅ 商业SEO优化完成: 94/100\n💼 测试行业分析平台适配...\n  ✅ 商业平台适配完成: 3个专业平台\n\n  📊 场景完整性: 5/5 通过 (100.0%)\n  💼 商业影响力: 100.0/100 (卓越)\n\n============================================================\n🏢 运行完整行业分析场景测试...\n🚀 开始行业分析场景测试\n============================================================\n🏢 测试行业分析场景完整性和商业影响力...\n🔧 测试行业分析场景配置...\n  ✅ 场景配置验证通过: industry_analysis\n📊 测试行业分析报告结构...\n  ✅ 报告结构验证通过: 40个数据点，3个图表，12条建议\n🎯 测试行业分析专业质量...\n  ✅ 专业质量评估: 91.2/100 (优秀)\n📈 测试行业分析SEO优化...\n  ✅ 商业SEO优化完成: 94/100\n💼 测试行业分析平台适配...\n  ✅ 商业平台适配完成: 3个专业平台\n\n  📊 场景完整性: 5/5 通过 (100.0%)\n  💼 商业影响力: 100.0/100 (卓越)\n\n============================================================\n📋 行业分析场景测试完成!\n  测试通过率: 100.0%\n  完整性分数: 100.0/100\n  商业影响力: 100.0/100 (卓越)\n  综合得分: 100.0/100\n  ✅ 所有测试通过，商业影响力优秀!\n",
+        "error": "test_01_scenario_configuration (__main__.TestIndustryAnalysisScenario.test_01_scenario_configuration)\n测试场景配置 ... ok\ntest_02_report_structure_and_completeness (__main__.TestIndustryAnalysisScenario.test_02_report_structure_and_completeness)\n测试报告结构和完整性 ... ok\ntest_03_professional_quality_assessment (__main__.TestIndustryAnalysisScenario.test_03_professional_quality_assessment)\n测试专业质量评估 ... ok\ntest_04_business_focused_seo_optimization (__main__.TestIndustryAnalysisScenario.test_04_business_focused_seo_optimization)\n测试商业内容SEO优化 ... ok\ntest_05_business_platform_adaptation (__main__.TestIndustryAnalysisScenario.test_05_business_platform_adaptation)\n测试商业平台适配 ... ok\ntest_06_scenario_completeness_and_business_impact (__main__.TestIndustryAnalysisScenario.test_06_scenario_completeness_and_business_impact)\n测试场景完整性和商业影响力 ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.002s\n\nOK\n",
+        "return_code": 0,
+        "success": true
+      },
+      "营销文案": {
+        "test_name": "营销文案",
+        "status": "failed",
+        "execution_time": 0.04,
+        "output": "🎯 测试营销文案场景配置...\n  ✅ 场景配置验证通过: marketing_copy\n📢 测试广告文案创作...\n🌐 测试落地页内容创作...\n  ✅ 落地页内容创作完成: 8个核心部分\n📧 测试营销邮件序列创作...\n  ✅ 邮件序列创作完成: 3封邮件\n📊 测试营销内容表现评估...\n💰 测试营销文案场景完整性和转化导向...\n🎯 测试营销文案场景配置...\n  ✅ 场景配置验证通过: marketing_copy\n📢 测试广告文案创作...\n  广告文案测试失败: 'headline' not found in {'campaign': '品牌关键词', 'headline_1': '智能写作助手 Pro', 'headline_2': 'AI智能写作助手', 'headline_3': '多平台发布工具', 'description': '让写作变得简单高效。AI智能写作，多平台适配，实时语法检查。免费试用！', 'final_url': 'https://example.com/free-trial', 'cta': '立即开始免费试用', 'keywords': ['AI写作工具', '智能写作助手', '内容创作软件', '多平台发布工具']}\n🌐 测试落地页内容创作...\n  ✅ 落地页内容创作完成: 8个核心部分\n📧 测试营销邮件序列创作...\n  ✅ 邮件序列创作完成: 3封邮件\n📊 测试营销内容表现评估...\n  营销表现测试失败: '<' not supported between instances of 'int' and 'str'\n\n  📊 场景完整性: 3/5 通过 (60.0%)\n  💰 转化导向: 65.0/100 (基础转化)\n\n============================================================\n💰 运行完整营销文案场景测试...\n🚀 开始营销文案场景测试\n============================================================\n💰 测试营销文案场景完整性和转化导向...\n🎯 测试营销文案场景配置...\n  ✅ 场景配置验证通过: marketing_copy\n📢 测试广告文案创作...\n  广告文案测试失败: 'headline' not found in {'campaign': '品牌关键词', 'headline_1': '智能写作助手 Pro', 'headline_2': 'AI智能写作助手', 'headline_3': '多平台发布工具', 'description': '让写作变得简单高效。AI智能写作，多平台适配，实时语法检查。免费试用！', 'final_url': 'https://example.com/free-trial', 'cta': '立即开始免费试用', 'keywords': ['AI写作工具', '智能写作助手', '内容创作软件', '多平台发布工具']}\n🌐 测试落地页内容创作...\n  ✅ 落地页内容创作完成: 8个核心部分\n📧 测试营销邮件序列创作...\n  ✅ 邮件序列创作完成: 3封邮件\n📊 测试营销内容表现评估...\n  营销表现测试失败: '<' not supported between instances of 'int' and 'str'\n\n  📊 场景完整性: 3/5 通过 (60.0%)\n  💰 转化导向: 65.0/100 (基础转化)\n❌ 场景测试失败: 3 not greater than or equal to 4\n",
+        "error": "test_01_scenario_configuration (__main__.TestMarketingCopyScenario.test_01_scenario_configuration)\n测试场景配置 ... ok\ntest_02_ad_copy_creation (__main__.TestMarketingCopyScenario.test_02_ad_copy_creation)\n测试广告文案创作 ... FAIL\ntest_03_landing_page_content (__main__.TestMarketingCopyScenario.test_03_landing_page_content)\n测试落地页内容 ... ok\ntest_04_email_sequence_creation (__main__.TestMarketingCopyScenario.test_04_email_sequence_creation)\n测试邮件序列创作 ... ok\ntest_05_marketing_performance_assessment (__main__.TestMarketingCopyScenario.test_05_marketing_performance_assessment)\n测试营销表现评估 ... ERROR\ntest_06_scenario_completeness_and_conversion_focus (__main__.TestMarketingCopyScenario.test_06_scenario_completeness_and_conversion_focus)\n测试场景完整性和转化导向 ... FAIL\n\n======================================================================\nERROR: test_05_marketing_performance_assessment (__main__.TestMarketingCopyScenario.test_05_marketing_performance_assessment)\n测试营销表现评估\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_marketing_copy.py\", line 604, in test_05_marketing_performance_assessment\n    efficiency_score = self.calculate_marketing_efficiency(performance_data)\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_marketing_copy.py\", line 640, in calculate_marketing_efficiency\n    roas_score = min(metrics[\"roas\"] * 20, 100)  # ROAS 3.5 = 70分\nTypeError: '<' not supported between instances of 'int' and 'str'\n\n======================================================================\nFAIL: test_02_ad_copy_creation (__main__.TestMarketingCopyScenario.test_02_ad_copy_creation)\n测试广告文案创作\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_marketing_copy.py\", line 197, in test_02_ad_copy_creation\n    self.assertIn(\"headline\", ad or {})\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'headline' not found in {'campaign': '品牌关键词', 'headline_1': '智能写作助手 Pro', 'headline_2': 'AI智能写作助手', 'headline_3': '多平台发布工具', 'description': '让写作变得简单高效。AI智能写作，多平台适配，实时语法检查。免费试用！', 'final_url': 'https://example.com/free-trial', 'cta': '立即开始免费试用', 'keywords': ['AI写作工具', '智能写作助手', '内容创作软件', '多平台发布工具']}\n\n======================================================================\nFAIL: test_06_scenario_completeness_and_conversion_focus (__main__.TestMarketingCopyScenario.test_06_scenario_completeness_and_conversion_focus)\n测试场景完整性和转化导向\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_marketing_copy.py\", line 755, in test_06_scenario_completeness_and_conversion_focus\n    self.assertGreaterEqual(passed_tests, total_tests - 1)  # 允许最多1个测试失败\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 3 not greater than or equal to 4\n\n----------------------------------------------------------------------\nRan 6 tests in 0.003s\n\nFAILED (failures=2, errors=1)\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_marketing_copy.py\", line 797, in run_full_marketing_scenario_test\n    completeness_report = self.test_06_scenario_completeness_and_conversion_focus()\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_marketing_copy.py\", line 755, in test_06_scenario_completeness_and_conversion_focus\n    self.assertGreaterEqual(passed_tests, total_tests - 1)  # 允许最多1个测试失败\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/unittest/case.py\", line 1297, in assertGreaterEqual\n    self.fail(self._formatMessage(msg, standardMsg))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/unittest/case.py\", line 732, in fail\n    raise self.failureException(msg)\nAssertionError: 3 not greater than or equal to 4\n",
+        "return_code": 1,
+        "success": false
+      },
+      "多平台分发": {
+        "test_name": "多平台分发",
+        "status": "failed",
+        "execution_time": 0.02,
+        "output": "",
+        "error": "  File \"/Users/costalong/code/skills/article-workflow/test_scenario_platform_distribution.py\", line 198\n    \"visual_requirements\": [\"专业图表\"，\"公司logo\"，\"人物图片\"]\n                                  ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+        "return_code": 1,
+        "success": false
+      },
+      "数据驱动优化": {
+        "test_name": "数据驱动优化",
+        "status": "failed",
+        "execution_time": 0.03,
+        "output": "📊 测试数据驱动优化场景配置...\n  ✅ 场景配置验证通过: data_driven_optimization\n🧪 测试A/B测试框架...\n  ✅ A/B测试框架创建完成: 4个变体\n📈 测试统计分析能力...\n  ✅ 统计分析完成: 胜出变体提升 +29.2%\n🔮 测试预测建模能力...\n  ✅ 预测建模完成: 准确率 87.2%\n⚙️ 测试自动化优化系统...\n💰 测试ROI和商业影响分析...\n🏆 测试数据驱动优化场景完整性和数据成熟度...\n📊 测试数据驱动优化场景配置...\n  ✅ 场景配置验证通过: data_driven_optimization\n🧪 测试A/B测试框架...\n  ✅ A/B测试框架创建完成: 4个变体\n📈 测试统计分析能力...\n  ✅ 统计分析完成: 胜出变体提升 +29.2%\n🔮 测试预测建模能力...\n  ✅ 预测建模完成: 准确率 87.2%\n⚙️ 测试自动化优化系统...\n  自动化优化系统测试失败: '>=' not supported between instances of 'str' and 'int'\n💰 测试ROI和商业影响分析...\n  ROI分析测试失败: could not convert string to float: '5.8个月'\n\n  📊 场景完整性: 4/6 通过 (66.7%)\n  📈 数据成熟度: 70.0/100 (数据驱动中级)\n\n============================================================\n📊 运行完整数据驱动优化场景测试...\n🚀 开始数据驱动优化场景测试\n============================================================\n🏆 测试数据驱动优化场景完整性和数据成熟度...\n📊 测试数据驱动优化场景配置...\n  ✅ 场景配置验证通过: data_driven_optimization\n🧪 测试A/B测试框架...\n  ✅ A/B测试框架创建完成: 4个变体\n📈 测试统计分析能力...\n  ✅ 统计分析完成: 胜出变体提升 +29.2%\n🔮 测试预测建模能力...\n  ✅ 预测建模完成: 准确率 87.2%\n⚙️ 测试自动化优化系统...\n  自动化优化系统测试失败: '>=' not supported between instances of 'str' and 'int'\n💰 测试ROI和商业影响分析...\n  ROI分析测试失败: could not convert string to float: '5.8个月'\n\n  📊 场景完整性: 4/6 通过 (66.7%)\n  📈 数据成熟度: 70.0/100 (数据驱动中级)\n❌ 场景测试失败: 4 not greater than or equal to 5\n",
+        "error": "test_01_scenario_configuration (__main__.TestDataDrivenOptimizationScenario.test_01_scenario_configuration)\n测试场景配置 ... ok\ntest_02_ab_testing_framework (__main__.TestDataDrivenOptimizationScenario.test_02_ab_testing_framework)\n测试A/B测试框架 ... ok\ntest_03_statistical_analysis_capability (__main__.TestDataDrivenOptimizationScenario.test_03_statistical_analysis_capability)\n测试统计分析能力 ... ok\ntest_04_predictive_modeling (__main__.TestDataDrivenOptimizationScenario.test_04_predictive_modeling)\n测试预测建模能力 ... ok\ntest_05_automated_optimization_system (__main__.TestDataDrivenOptimizationScenario.test_05_automated_optimization_system)\n测试自动化优化系统 ... ERROR\ntest_06_roi_and_business_impact_analysis (__main__.TestDataDrivenOptimizationScenario.test_06_roi_and_business_impact_analysis)\n测试ROI和商业影响分析 ... ERROR\ntest_07_scenario_completeness_and_data_maturity (__main__.TestDataDrivenOptimizationScenario.test_07_scenario_completeness_and_data_maturity)\n测试场景完整性和数据成熟度 ... FAIL\n\n======================================================================\nERROR: test_05_automated_optimization_system (__main__.TestDataDrivenOptimizationScenario.test_05_automated_optimization_system)\n测试自动化优化系统\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_data_driven_optimization.py\", line 417, in test_05_automated_optimization_system\n    self.assertGreaterEqual(optimization_rules[\"system_performance\"][\"automation_rate\"], 80)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/unittest/case.py\", line 1295, in assertGreaterEqual\n    if not a >= b:\n           ^^^^^^\nTypeError: '>=' not supported between instances of 'str' and 'int'\n\n======================================================================\nERROR: test_06_roi_and_business_impact_analysis (__main__.TestDataDrivenOptimizationScenario.test_06_roi_and_business_impact_analysis)\n测试ROI和商业影响分析\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_data_driven_optimization.py\", line 494, in test_06_roi_and_business_impact_analysis\n    self.assertLess(float(roi_analysis[\"roi_calculation\"][\"payback_period\"].split()[0]), 12)\n                    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: could not convert string to float: '5.8个月'\n\n======================================================================\nFAIL: test_07_scenario_completeness_and_data_maturity (__main__.TestDataDrivenOptimizationScenario.test_07_scenario_completeness_and_data_maturity)\n测试场景完整性和数据成熟度\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_data_driven_optimization.py\", line 606, in test_07_scenario_completeness_and_data_maturity\n    self.assertGreaterEqual(passed_tests, total_tests - 1)  # 允许最多1个测试失败\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 not greater than or equal to 5\n\n----------------------------------------------------------------------\nRan 7 tests in 0.004s\n\nFAILED (failures=1, errors=2)\nTraceback (most recent call last):\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_data_driven_optimization.py\", line 649, in run_full_data_driven_scenario_test\n    completeness_report = self.test_07_scenario_completeness_and_data_maturity()\n  File \"/Users/costalong/code/skills/article-workflow/test_scenario_data_driven_optimization.py\", line 606, in test_07_scenario_completeness_and_data_maturity\n    self.assertGreaterEqual(passed_tests, total_tests - 1)  # 允许最多1个测试失败\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/unittest/case.py\", line 1297, in assertGreaterEqual\n    self.fail(self._formatMessage(msg, standardMsg))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/unittest/case.py\", line 732, in fail\n    raise self.failureException(msg)\nAssertionError: 4 not greater than or equal to 5\n",
+        "return_code": 1,
+        "success": false
+      },
+      "批量处理": {
+        "test_name": "批量处理",
+        "status": "failed",
+        "execution_time": 0.02,
+        "output": "",
+        "error": "  File \"/Users/costalong/code/skills/article-workflow/test_scenario_batch_processing.py\", line 326\n    \t\tself.assertGreater(performance_data[\"processing_metrics\"][\"total_articles_processed\"], 500)\n    ^\nTabError: inconsistent use of tabs and spaces in indentation\n",
+        "return_code": 1,
+        "success": false
+      }
+    },
+    "summary": {
+      "overall_status": "FAILED",
+      "recommendations": [
+        {
+          "scenario": "营销文案",
+          "issue": "测试失败",
+          "suggestion": "检查 营销文案 测试脚本和依赖"
+        },
+        {
+          "scenario": "多平台分发",
+          "issue": "测试失败",
+          "suggestion": "检查 多平台分发 测试脚本和依赖"
+        },
+        {
+          "scenario": "数据驱动优化",
+          "issue": "测试失败",
+          "suggestion": "检查 数据驱动优化 测试脚本和依赖"
+        },
+        {
+          "scenario": "批量处理",
+          "issue": "测试失败",
+          "suggestion": "检查 批量处理 测试脚本和依赖"
+        }
+      ]
+    }
+  },
+  "scenario_analysis": {
+    "total_scenarios": 6,
+    "passed_scenarios": 2,
+    "pass_rate": "33.3%",
+    "scenario_strengths": {
+      "技术教程": 9,
+      "行业分析": 9,
+      "营销文案": 0,
+      "多平台分发": 0,
+      "数据驱动优化": 0,
+      "批量处理": 0
+    },
+    "strongest_scenario": "技术教程",
+    "weakest_scenario": "营销文案"
+  },
+  "performance_metrics": {
+    "total_execution_time": 0.17,
+    "average_execution_time": 0.03,
+    "fastest_scenario": "多平台分发",
+    "slowest_scenario": "营销文案"
+  },
+  "recommendations": [
+    {
+      "scenario": "营销文案",
+      "issue": "测试失败",
+      "suggestion": "检查 营销文案 测试脚本和依赖"
+    },
+    {
+      "scenario": "多平台分发",
+      "issue": "测试失败",
+      "suggestion": "检查 多平台分发 测试脚本和依赖"
+    },
+    {
+      "scenario": "数据驱动优化",
+      "issue": "测试失败",
+      "suggestion": "检查 数据驱动优化 测试脚本和依赖"
+    },
+    {
+      "scenario": "批量处理",
+      "issue": "测试失败",
+      "suggestion": "检查 批量处理 测试脚本和依赖"
+    }
+  ],
+  "overall_assessment": {
+    "status": "FAILED",
+    "confidence_level": "低",
+    "readiness_for_production": false
+  }
+}
